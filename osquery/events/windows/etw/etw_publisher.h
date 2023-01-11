@@ -38,6 +38,7 @@ namespace osquery {
     }                                                                          \
   } // namespace osquery
 
+#define MAX_FILEOBJ_CACHE       200
 /**
  * @brief Abstracts the EventPublisher publisher functionality by exposing
  * only what's needed to deal with ETW event collection and dispatching. In

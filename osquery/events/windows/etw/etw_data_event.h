@@ -16,6 +16,110 @@
 namespace osquery {
 
 /**
+ * @brief File delete event payload
+ */
+struct EtwDeletePathData final {
+  /// Process ID
+  std::uint32_t ProcessId{0};
+
+  // Path of File Deleted
+  std::string FilePath;
+
+  /// Time
+  FILETIME EventTime{0};
+
+  /// Flag to indicate that user data has been gathered
+  bool UserDataReady{false};
+};
+
+using EtwDeletePathDataRef = std::shared_ptr<EtwDeletePathData>;
+
+/**
+ * @brief File delete event payload
+ */
+struct EtwNameDeleteData final {
+  /// Process ID
+  std::uint32_t ProcessId{0};
+
+  // Path of File created
+  std::string FileName;
+
+  /// Time
+  FILETIME EventTime{0};
+
+  /// Flag to indicate that user data has been gathered
+  bool UserDataReady{false};
+};
+
+using EtwNameDeleteDataRef = std::shared_ptr<EtwNameDeleteData>;
+
+
+/**
+ * @brief Create New File event payload
+ */
+struct EtwCreateNewFileData final {
+  /// Process ID
+  std::uint32_t ProcessId{0};
+
+  // Path of File created
+  std::string FileName;
+
+  /// Time
+  FILETIME EventTime{0};
+
+  /// Flag to indicate that user data has been gathered
+  bool UserDataReady{false};
+};
+
+using EtwCreateNewFileDataRef = std::shared_ptr<EtwCreateNewFileData>;
+
+/**
+ * @brief Create File event payload
+ */
+struct EtwCreateData final {
+  /// Process ID
+  std::uint32_t ProcessId{0};
+
+  // Path of File created
+  std::string FileName;
+
+  /// Time
+  FILETIME EventTime{0};
+
+  /// File object
+  uint64_t FileObj;
+
+  /// Flag to indicate that user data has been gathered
+  bool UserDataReady{false};
+};
+
+using EtwCreateDataRef = std::shared_ptr<EtwCreateData>;
+
+/**
+ * @brief Rename File event payload
+ */
+struct EtwRenamePathData final {
+  /// Process ID
+  std::uint32_t ProcessId{0};
+
+  // Old file path
+  std::string OldFilePath;
+
+  // Path of File Renamed
+  std::string RenamedFilePath;
+
+  /// Time
+  FILETIME EventTime{0};
+
+  /// File object
+  uint64_t FileObj;
+
+  /// Flag to indicate that user data has been gathered
+  bool UserDataReady{false};
+};
+
+using EtwRenamePathDataRef = std::shared_ptr<EtwRenamePathData>;
+/**
  * @brief Process start event payload
  */
 struct EtwProcessStartData final {
@@ -110,15 +214,30 @@ using EtwProcStopDataRef = std::shared_ptr<EtwProcessStopData>;
 /**
  * @brief ETW Event Payload
  */
-using EtwPayloadVariant =
-    std::variant<std::monostate, EtwProcStartDataRef, EtwProcStopDataRef>;
+using EtwPayloadVariant = std::variant<std::monostate,
+                                       EtwProcStartDataRef,
+                                       EtwProcStopDataRef,
+                                       EtwCreateNewFileDataRef,
+                                       EtwNameDeleteDataRef,
+                                       EtwCreateDataRef,
+                                       EtwRenamePathDataRef,
+                                       EtwDeletePathDataRef >;
 
 /**
  * @brief Event types
  * The event type is used to tag an ETW event to an specific data type that will
  * be used to dispatch events to different provider post processors
  */
-enum class EtwEventType { Invalid, ProcessStart, ProcessStop };
+enum class EtwEventType { 
+    Invalid, 
+    ProcessStart, 
+    ProcessStop, 
+    CreateNewFile, 
+    NameDelete,
+    Create,
+    RenamePath,
+    DeletePath
+};
 
 /**
  * @brief Event Type string representation
@@ -126,7 +245,12 @@ enum class EtwEventType { Invalid, ProcessStart, ProcessStop };
 const auto kEtwEventTypeStrings = std::unordered_map<EtwEventType, std::string>{
     {EtwEventType::Invalid, "Invalid"},
     {EtwEventType::ProcessStart, "ProcessStart"},
-    {EtwEventType::ProcessStop, "ProcessStop"}};
+    {EtwEventType::ProcessStop, "ProcessStop"},
+    {EtwEventType::CreateNewFile, "CreateNewFile"},
+    {EtwEventType::NameDelete, "NameDelete"},
+    {EtwEventType::Create, "Create"},
+    {EtwEventType::RenamePath, "RenamePath"},
+    {EtwEventType::DeletePath, "DeletePath"}};
 
 /**
  * @brief ETW Event Header

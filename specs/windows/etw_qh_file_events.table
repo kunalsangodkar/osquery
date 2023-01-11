@@ -1,0 +1,19 @@
+table_name("etw_qh_file_events")
+description("Windows file events.")
+schema([
+    Column("type", TEXT, "Event Type (CreateFile, DeleteFile, RenameFile)"),
+    Column("pid", BIGINT, "Process ID"),
+    Column("path", TEXT, "Path of file"),
+	Column("new_path", TEXT, "Path of renamed file"),
+    Column("datetime", DATETIME, "Event timestamp in DATETIME format"),
+    Column("time_windows", BIGINT, "Event timestamp in Windows format", hidden=True),
+    Column("time", BIGINT, "Event timestamp in Unix format", hidden=True),
+])
+attributes(event_subscriber=True)
+implementation("etw_qh_file_events@etw_qh_file_events::genTable")
+examples([
+	"select * from etw_qh_file_events;",
+	"select * from etw_qh_file_events WHERE time >= (( SELECT unix_time FROM time) - 60 );",
+	"select * from etw_qh_file_events WHERE datetime > '2022-11-18 16:48:00';",
+	"select * from etw_qh_file_events WHERE datetime BETWEEN '2022-11-18 16:40:00' AND '2022-11-18 16:50:00';"
+])

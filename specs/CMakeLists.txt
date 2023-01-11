@@ -317,6 +317,7 @@ function(generateNativeTables)
   if(OSQUERY_BUILD_ETW)
     list(APPEND platform_dependent_spec_files
       "windows/etw_process_events.table:windows"
+      "windows/etw_qh_file_events.table:windows"
     )
   endif()  
 

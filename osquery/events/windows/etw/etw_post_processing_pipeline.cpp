@@ -44,7 +44,7 @@ bool EtwPostProcessorsRunnable::CommonPostProcessing(EtwEventDataRef& data) {
   FILETIME workTime{0};
   workTime.dwLowDateTime = data->Header.RawHeader.TimeStamp.LowPart;
   workTime.dwHighDateTime = data->Header.RawHeader.TimeStamp.HighPart;
-  data->Header.UnixTimestamp = filetimeToUnixtime(workTime);
+  data->Header.UnixTimestamp = filetimeToUnixtimeMs(workTime);
 
   // Windows timestamp in 100 nanoseconds resolution
   data->Header.WinTimestamp = data->Header.RawHeader.TimeStamp.QuadPart;

@@ -73,6 +73,7 @@ function(generateOsqueryEvents)
         windows/etw/etw_kernel_session.cpp
         windows/etw/etw_controller.cpp
         windows/etw/etw_publisher.cpp
+        windows/etw/etw_qh_publisher_files.cpp
       )
     endif()	
   endif()
@@ -184,6 +185,7 @@ function(generateOsqueryEvents)
       list(APPEND platform_public_header_files
         windows/etw/etw_user_session.h
         windows/etw/etw_publisher_processes.h
+        windows/etw/etw_qh_publisher_files.h
         windows/etw/etw_publisher.h
         windows/etw/etw_provider_config.h
         windows/etw/etw_post_processing_pipeline.h

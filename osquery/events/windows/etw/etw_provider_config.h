@@ -13,6 +13,12 @@
 
 #include <osquery/events/windows/etw/etw_data_event.h>
 
+#define KERNEL_FILE_KEYWORD_DELETE_PATH         0x400
+#define KERNEL_FILE_KEYWORD_CREATE_NEW_FILE     0x1000
+#define KERNEL_FILE_KEYWORD_FILENAME            0x10
+#define KERNEL_FILE_KEYWORD_RENAME_SETLINK_PATH 0x800
+#define KERNEL_FILE_KEYWORD_CREATE              0x80
+
 namespace osquery {
 
 class Status;

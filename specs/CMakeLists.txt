@@ -84,6 +84,7 @@ function(generateNativeTables)
   set(platform_dependent_spec_files
     "arp_cache.table:linux,macos,windows"
     "atom_packages.table:linux,macos,windows"
+    "cpu_info.table:linux,macos,windows"
     "darwin/account_policy_data.table:macos"
     "darwin/ad_config.table:macos"
     "darwin/alf.table:macos"
@@ -157,6 +158,7 @@ function(generateNativeTables)
     "linux/apparmor_profiles.table:linux"
     "linux/apt_sources.table:linux"
     "linux/iptables.table:linux"
+    "linux/kernel_keys.table:linux"
     "linux/kernel_modules.table:linux"
     "linux/lxd_instances.table:linux"
     "linux/lxd_instance_config.table:linux"
@@ -190,7 +192,6 @@ function(generateNativeTables)
     "linux/systemd_units.table:linux"
     "linux/yum_sources.table:linux"
     "linwin/intel_me_info.table:linux,windows"
-    "linwin/cpu_info.table:linux,windows"
     "kernel_info.table:linux,macos,windows"
     "posix/extended_attributes.table:linux,macos"
     "posix/acpi_tables.table:linux,macos"
@@ -316,7 +317,7 @@ function(generateNativeTables)
   
   if(OSQUERY_BUILD_ETW)
     list(APPEND platform_dependent_spec_files
-      "windows/etw_process_events.table:windows"
+      "windows/process_etw_events.table:windows"
       "windows/etw_qh_file_events.table:windows"
     )
   endif()  

@@ -51,8 +51,15 @@ function(libmagicMain)
   add_library(thirdparty_libmagic ${source_files})
   target_compile_definitions(thirdparty_libmagic PRIVATE
     ${compile_definition_list}
-    -Dbuffer_init=libmagic_buffer_init
+    buffer_init=libmagic_buffer_init
   )
+
+  if(DEFINED PLATFORM_LINUX)
+    target_compile_definitions(thirdparty_libmagic PRIVATE
+      strlcat=libmagic_strlcat
+      strlcpy=libmagic_strlcpy
+    )
+  endif()
 
   target_link_libraries(thirdparty_libmagic PUBLIC
     thirdparty_zlib

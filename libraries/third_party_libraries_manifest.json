@@ -2,7 +2,7 @@
   "openssl": {
     "product": "openssl",
     "vendor": "openssl",
-    "version": "1.1.1q",
+    "version": "1.1.1t",
     "ignored-cves": [
       "CVE-2007-5536",
       "CVE-2019-0190"
@@ -91,13 +91,17 @@
   "dbus": {
     "product": "d-bus",
     "vendor": "d-bus_project",
-    "version": "1.12.20",
-    "commit": "ab88811768f750777d1a8b9d9ab12f13390bfd3a",
+    "version": "1.12.24",
+    "commit": "5ff925648e88ba29cef7d708bc2bbc5d6de5fc48",
     "ignored-cves": []
   },
   "ebpfpub": {
     "vendor": "trailofbits",
-    "commit": "71c8554bbbf3f78e9c9ea39fd9f349fccf997dce"
+    "commit": "8d56c802cb0d655a6794d96ae20df6f6a8fcf385"
+  },
+  "linuxevents": {
+    "vendor": "trailofbits",
+    "commit": "31db0a7acdaede9cd6a0311ff5e48ac64cd130cb"
   },
   "expat": {
     "product": "expat",
@@ -210,8 +214,8 @@
   "librpm": {
     "product": "rpm",
     "vendor": "rpm",
-    "version": "4.17.0",
-    "commit": "3e74e8ba2dd5e76a5353d238dc7fc38651ce27b3",
+    "version": "4.18.0",
+    "commit": "ea0d77c52e176e2876fdb1d07ad41e9e2635a93e",
     "ignored-cves": []
   },
   "libudev": {
@@ -275,7 +279,7 @@
     "vendor": "sqlite",
     "version": "3.39.2",
     "commit": "cea3fbb89fb5dbf9a613964a3786867df17a0204",
-    "ignored-cves": []
+    "ignored-cves": ["CVE-2022-46908"]
   },
   "thrift": {
     "product": "thrift",
@@ -287,15 +291,20 @@
   "util-linux": {
     "product": "util-linux",
     "vendor": "kernel",
-    "version": "2.27.1",
-    "commit": "9f5e5bec91a72365b9baa771fa02cbedab804fe3",
-    "ignored-cves": []
+    "version": "2.35.2",
+    "commit": "88a1d6f1812ab05fedc75e295368ff6198e63d89",
+    "ignored-cves": [
+      "CVE-2021-37600",
+      "CVE-2022-0563",
+      "CVE-2021-3996",
+      "CVE-2021-3995"
+    ]
   },
   "yara": {
     "product": "yara",
     "vendor": "virustotal",
-    "version": "4.1.3",
-    "commit": "b99a808cf9955090b909c72d6a0da5295c3cbc7c",
+    "version": "4.2.3",
+    "commit": "ba94b4f8ebb6d56786d14f6a0f7529b32d7c216f",
     "ignored-cves": []
   },
   "zlib": {

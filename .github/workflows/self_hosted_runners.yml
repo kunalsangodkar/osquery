@@ -21,10 +21,10 @@ on:
   # Do not run this on pull requests
   push:
     branches:
-      - '*'
+      - '**'
 
     tags:
-      - '*'
+      - '**'
 
 # Please remember to update values for both x86 and aarch64 workflows.
 env:
@@ -181,6 +181,16 @@ jobs:
       run: |
         echo "VALUE=$(($(nproc) + 1))" >> $GITHUB_OUTPUT
 
+
+    # try to gather some info about build space
+    - name: Disk Space Information
+      shell: bash
+      id: disk_space_info
+      run: |
+        df -h
+        du -sh /usr/local/lib/android || true
+        du -sh /usr/share/dotnet || true
+
     # We don't have enough space on the worker to actually generate all
     # the debug symbols (osquery + dependencies), so we have a flag to
     # disable them when running a Debug build
@@ -324,6 +334,11 @@ jobs:
           --build . \
           --target install \
           -j ${{ steps.build_job_count.outputs.VALUE }}
+
+        # Do some targeted cleanups to get additional free space before installing dependencies,
+        # we are unfortunately out of space otherwise.
+        find . -name "*.a" -exec rm {} \;
+        find . -name "*.o" -exec rm {} \;
 
     # Since we need to run CMake to create the packages with osquery-packaging, the
     # configuration will fail unless the C and C++ compilers are found

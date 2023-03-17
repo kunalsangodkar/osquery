@@ -65,6 +65,7 @@ function(generateOsqueryTablesSystemSystemtable)
       linux/intel_me.cpp
       linux/kernel_info.cpp
       linux/kernel_modules.cpp
+      linux/kernel_keys.cpp
       linux/md_tables.cpp
       linux/memory_info.cpp
       linux/memory_map.cpp
@@ -112,6 +113,7 @@ function(generateOsqueryTablesSystemSystemtable)
       darwin/battery.mm
       darwin/block_devices.cpp
       darwin/certificates.mm
+      darwin/cpu_info.cpp
       darwin/cpu_time.cpp
       darwin/crashes.cpp
       darwin/cups_destinations.cpp

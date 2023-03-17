@@ -34,6 +34,7 @@ function(pluginsLoggerMain)
   generatePluginsLoggerSyslog()
   generatePluginsLoggerTlslogger()
   generatePluginsLoggerWindowseventlog()
+  generatePluginsLoggerShhlogger()
 endfunction()
 
 function(generatePluginsLoggerAwsfirehose)
@@ -275,6 +276,28 @@ function(generatePluginsLoggerWindowseventlog)
   )
 
   generateIncludeNamespace(plugins_logger_windowseventlog "plugins/logger" "FILE_ONLY" ${public_header_files})
+endfunction()
+
+function(generatePluginsLoggerShhlogger)
+  add_osquery_library(plugins_logger_shhlogger EXCLUDE_FROM_ALL
+    shh_logger.cpp
+  )
+
+  enableLinkWholeArchive(plugins_logger_shhlogger)
+
+  target_link_libraries(plugins_logger_shhlogger PUBLIC
+    osquery_cxx_settings
+    plugins_logger_commondeps
+    osquery_filesystem
+    osquery_utils_config
+    osquery_utils_conversions
+  )
+
+  set(public_header_files
+    shh_logger.h
+  )
+
+  generateIncludeNamespace(plugins_logger_shhlogger "plugins/logger" "FILE_ONLY" ${public_header_files})
 endfunction()
 
 pluginsLoggerMain()

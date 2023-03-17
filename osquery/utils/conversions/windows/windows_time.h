@@ -16,6 +16,13 @@
 namespace osquery {
 
 /**
+ * @brief Windows helper function for converting FILETIME to Unix epoch in millisec
+ *
+ * @returns The unix epoch timestamp representation of the FILETIME
+ */
+LONGLONG filetimeToUnixtimeMs(const FILETIME& ft);
+
+/**
  * @brief Windows helper function for converting FILETIME to Unix epoch
  *
  * @returns The unix epoch timestamp representation of the FILETIME

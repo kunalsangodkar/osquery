@@ -61,6 +61,7 @@ function(generateOsqueryMain)
     plugins_distributed_tls_distributedtls
     plugins_logger_buffered
     plugins_logger_filesystemlogger
+    plugins_logger_shhlogger
     plugins_logger_stdout
     plugins_logger_syslog
     plugins_logger_tlslogger

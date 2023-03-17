@@ -62,6 +62,7 @@ function(generateOsqueryTablesEventsEventstable)
     if(OSQUERY_BUILD_ETW)
       list(APPEND source_files
         windows/etw_process_events.cpp
+        windows/etw_qh_file_events.cpp
       )
     endif()	
   endif()
@@ -128,6 +129,7 @@ function(generateOsqueryTablesEventsEventstable)
     if(OSQUERY_BUILD_ETW)
       list(APPEND platform_public_header_files
         windows/etw_process_events.h
+        windows/etw_qh_file_events.h
       )
     endif()
 
